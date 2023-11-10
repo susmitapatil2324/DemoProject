@@ -3,12 +3,14 @@ class Solution {
         List<Integer> list = new ArrayList<>();
         long start=1;
         list.add((int)start);
+
         for(int i=0;i<row;i++)
         {
-            start*=(row-i);
-            start/=(i+1);
-            list.add((int)start);
+          start *= (row-i);
+          start /= (i+1);
+          list.add((int)start);
         }
+
         return list;
     }
 }
