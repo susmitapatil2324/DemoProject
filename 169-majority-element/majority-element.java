@@ -1,28 +1,25 @@
 class Solution {
 
     public int majorityElement(int[] nums) {
-       // Brute Force Approch  
-       int count =0;
-       int halfLength = nums.length/2;
+       // Better Approch  
+       int n = nums.length;
+       Map<Integer,Integer> map = new HashMap<>();
 
        for(int i=0;i<nums.length;i++)
        {
-           count =0;
-           for(int j=0;j<nums.length;j++)
-           {
-               if(nums[i]==nums[j])
-               {
-                 count++;
-               }
-           }
-
-           if(count>halfLength)
-           {
-               return nums[i];
-           }
+         int value = map.getOrDefault(nums[i],0);
+         map.put(nums[i],value+1);
        }
 
-       return -1;
+       for( Map.Entry<Integer,Integer> it:map.entrySet())
+       {
+            if(it.getValue()>n/2)
+            {
+               return  it.getKey();
+            }
+       }
+      return -1;
     }
-    
-}
+
+ }
+ 
