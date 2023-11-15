@@ -1,13 +1,14 @@
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         Stack<Integer> stack = new Stack<>();
+
         int[] nextgreat = new int[nums2.length];
 
         for (int i = nums2.length - 1; i >= 0; i--) {
             int ele = nums2[i];
 
-            // Remove elements from the stack that are smaller than the current element
-            while (!stack.isEmpty() && stack.peek() <= ele) {
+            // Remove elements from the stack that are smaller than the current   element
+            while (stack.size()>0 && stack.peek() <= ele) {
                 stack.pop();
             }
 
