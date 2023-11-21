@@ -12,7 +12,8 @@ class Solution {
        {
           if(target==nums[i])
           {
-              result[1] = i;
+              result[0] = i;
+              break;
           }
        }
 
@@ -20,7 +21,8 @@ class Solution {
        {
          if(target==nums[i])
           {
-              result[0] = i;
+              result[1] = i;
+               break;
           }
        }
        return result;
