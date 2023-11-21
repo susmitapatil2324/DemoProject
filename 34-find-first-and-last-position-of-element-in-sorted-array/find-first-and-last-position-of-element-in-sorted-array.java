@@ -1,49 +1,42 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int first = findFirst(nums, target);
-        int last = findLast(nums, target);
-        return new int[]{first, last};
+        int[] res = new int[2];
+        res[0] = findStartPos(nums, target);
+        res[1] = findEndPos(nums, target);
+        return res;
     }
 
-    private int findFirst(int[] nums, int target) {
-        int left = 0, right = nums.length - 1;
-        int first = -1;
+    private int findStartPos(int[] nums, int target) {
+        int left = 0, right = nums.length - 1, ans = -1;
         while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target) {
-                if (mid == 0 || nums[mid - 1] != target) {
-                    first = mid;
-                    break;
-                } else {
-                    right = mid - 1;
-                }
-            } else if (nums[mid] < target) {
-                left = mid + 1;
+            int midPos = left + (right - left) / 2;
+
+            if (target == nums[midPos]) {
+                ans = midPos;
+                right = midPos - 1;
+            } else if (target > nums[midPos]) {
+                left = midPos + 1;
             } else {
-                right = mid - 1;
+                right = midPos - 1;
             }
         }
-        return first;
+        return ans;
     }
 
-    private int findLast(int[] nums, int target) {
-        int left = 0, right = nums.length - 1;
-        int last = -1;
+    private int findEndPos(int[] nums, int target) {
+        int left = 0, right = nums.length - 1, ans = -1;
         while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target) {
-                if (mid == nums.length - 1 || nums[mid + 1] != target) {
-                    last = mid;
-                    break;
-                } else {
-                    left = mid + 1;
-                }
-            } else if (nums[mid] < target) {
-                left = mid + 1;
+            int midPos = left + (right - left) / 2;
+
+            if (target == nums[midPos]) {
+                ans = midPos;
+                left = midPos + 1;
+            } else if (target > nums[midPos]) {
+                left = midPos + 1;
             } else {
-                right = mid - 1;
+                right = midPos - 1;
             }
         }
-        return last;
+        return ans;
     }
 }
