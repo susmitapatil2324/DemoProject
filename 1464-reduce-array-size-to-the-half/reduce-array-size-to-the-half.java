@@ -1,7 +1,6 @@
 class Solution {
-    
-    public int minSetSize(int[] arr) {
-    
+
+    public int minSetSize(int[] arr) {   
         Map<Integer,Integer> map = new HashMap<>();
         List<Integer> l = new ArrayList<>();
         int n = arr.length;
