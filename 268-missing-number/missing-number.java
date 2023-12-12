@@ -13,15 +13,13 @@ class Solution {
      System.out.println("xorAll is :"+xorAll);
 
      int xorArray= 0;
-
-     for(int num : nums) {
-         System.out.println("nums is:"+num);
-            xorArray ^= num;
+     for(int i=0;i<n;i++)
+     {
+       xorArray^=nums[i];
      }
-
     System.out.println("xorArray is :"+xorArray);
 
-    System.out.println("Sub is :"+(xorAll^xorArray));
+    System.out.println("Xor of two is :"+(xorAll^xorArray));
 
     return xorAll^xorArray;
     }
