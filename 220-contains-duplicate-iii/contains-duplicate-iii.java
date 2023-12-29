@@ -1,36 +1,39 @@
 class Solution {
+    
     public boolean containsNearbyAlmostDuplicate(int[] nums, int indexDiff, int valueDiff) {
+      
+      if(nums==null || nums.length<2 || indexDiff<=0 || valueDiff<0 )
+      {
+          return false;
+      }
+      TreeSet<Long> treeset = new TreeSet<>();
 
-        if (nums == null || nums.length < 2 || indexDiff <= 0 || valueDiff < 0) {
-            return false;
-        }
+      for(int i=0;i<nums.length;i++)
+      {
+          long currentValue = nums[i];
+          
+          Long floor = treeset.floor(currentValue);
 
-        TreeSet<Long> set = new TreeSet<>();
+          if(floor !=null && currentValue-floor <= valueDiff)
+          {
+              return true;
+          }
 
-        for (int i = 0; i < nums.length; i++) {
-            long currentElement = nums[i];
+          Long celling = treeset.ceiling(currentValue);
 
-            // Check if there is a number in the set with a difference less than or equal to valueDiff
-            Long floor = set.floor(currentElement);
-            
-            if (floor != null && currentElement - floor <= valueDiff) {
-                return true;
-            }
+          if(celling !=null && celling-currentValue <= valueDiff)
+          {
+              return true;
+          }
 
-            Long ceiling = set.ceiling(currentElement);
-            if (ceiling != null && ceiling - currentElement <= valueDiff) {
-                return true;
-            }
+          treeset.add(currentValue);
 
-            // Add the current element to the set
-            set.add(currentElement);
+          if(i>=indexDiff)
+          {
+              treeset.remove((long)nums[i-indexDiff]);          
+          }
+      }
 
-            // Remove the element that is outside the window of size indexDiff
-            if (i >= indexDiff) {
-                set.remove((long) nums[i - indexDiff]);
-            }
-        }
-
-        return false;
+      return false;
     }
-}
+}    
