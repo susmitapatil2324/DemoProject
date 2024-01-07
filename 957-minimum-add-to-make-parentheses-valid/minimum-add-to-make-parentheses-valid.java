@@ -1,23 +1,18 @@
 class Solution {
     public int minAddToMakeValid(String s) {
-        Stack<Character> st = new Stack<>();
+        int openCount = 0;  // Number of open parentheses needed
+        int closeCount = 0; // Number of close parentheses needed
 
-        for(int i=0;i<s.length();i++)
-        {
-            if(s.charAt(i)==')')
-            {
-               if(!st.isEmpty() && st.peek()=='(')
-               {
-                  st.pop();
-               }else
-               {
-                 st.push(s.charAt(i));
-               }
-            }else
-            {
-              st.push(s.charAt(i));
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                openCount++;
+            } else if (c == ')' && openCount > 0) {
+                openCount--;
+            } else {
+                closeCount++;
             }
         }
-        return st.size();
+
+        return openCount + closeCount;
     }
 }
