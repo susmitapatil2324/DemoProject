@@ -1,21 +1,31 @@
 class Solution {
     public String makeGood(String s) {
-        int n = s.length();
-        Stack<Character> st = new Stack<>();
-        String ans = "";
-      //  st.push(s.charAt(0));
-        char[] arr = s.toCharArray();
-        for(int i=0; i<n ;i++){
-            if(!st.isEmpty() && (st.peek()-arr[i]==32 || st.peek()-arr[i]==-32)){
-                st.pop();
-            }else{
-                st.push(arr[i]);
-            }
-            
-        }
-        while(!st.empty()){
-            ans=st.pop()+ans;
-        }
-        return ans;
+       Stack<Character> stack = new Stack<>();
+       int n= s.length();
+       char arr[] = s.toCharArray();
+       String ans ="";
+
+       if(n==1)
+       {
+           return s;
+       }
+
+       for(int i=0;i<s.length();i++)
+       {
+           if(stack.size()!=0 && (stack.peek()-arr[i]==32||
+             stack.peek()-arr[i]==-32))
+           {
+             stack.pop();
+           }else
+           {
+             stack.push(arr[i]);
+           }
+       }
+
+       while(stack.size()!=0)
+       {
+          ans=stack.pop()+ans; 
+       }
+       return ans;
     }
 }
