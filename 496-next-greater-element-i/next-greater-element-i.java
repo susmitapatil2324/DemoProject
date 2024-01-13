@@ -1,39 +1,40 @@
 class Solution {
+    
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        //Taking length of two array
-        int len1 = nums1.length; 
-        int len2 = nums2.length;
+       Stack<Integer> stack = new Stack<>();
+       Map<Integer,Integer> map = new HashMap<>();
+       int nextgre[] = new int[nums2.length];
+       int result [] = new int[nums1.length];
 
-        //Created HashMap
-        Map<Integer,Integer> map = new HashMap<>();
+       //Start travel from last index   
+       for(int i=nums2.length-1;i>=0;i--)
+       {
+          while(stack.size()!=0 && stack.peek()<=nums2[i])
+          {
+            stack.pop();
+          }
 
-        //Created result array
-        int result[] = new int[len1];
+          if(stack.size()!=0)
+          {
+           nextgre[i] = stack.peek();
+          }else
+          {
+             nextgre[i] = -1; 
+          }
 
-        for(int i=0;i<len1;i++)
+          stack.push(nums2[i]);
+       }
+        
+        for(int i=0;i<nums2.length;i++)
         {
-           result[i] = -1;
+            map.put(nums2[i],nextgre[i]);
         }
 
-        for(int i=0;i<len2;i++)
+        for(int i=0;i<nums1.length;i++)
         {
-            map.put(nums2[i],i);
+         result[i] = map.get(nums1[i]);
         }
 
-        for(int i=0;i<len1;i++)
-        {
-           int no = nums1[i];
-           int index = map.get(no);
-
-           for(int j =index+1;j<len2;j++)
-           {
-              if(no<nums2[j])
-              {
-                result[i] =nums2[j];
-                break;
-              }
-           }
-        }
-       return result;
+      return result;
     }
 }
