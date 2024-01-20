@@ -11,15 +11,25 @@
 class Solution {
 
     public ListNode middleNode(ListNode head) {
-       ListNode fast = head;
-       ListNode slow = head;
+       // Step 1: Calculate the length of the linked list
+        int length = 0;
+        ListNode current = head;
+        while (current != null) {
+            length++;
+            current = current.next;
+        }
 
-       while(fast!=null && fast.next!=null)
-       {
-         slow = slow.next;
-         fast = fast.next.next;
-       }
-       return slow ;
+        // Step 2: Find the middle index
+        int middleIndex = length / 2;
+
+        // Step 3: Traverse to the middle index
+        current = head;
+        for (int i = 0; i < middleIndex; i++) {
+            current = current.next;
+        }
+
+        // Step 4: Return the middle node
+        return current;
     }
 }
 
