@@ -11,25 +11,32 @@
 class Solution {
 
     public ListNode middleNode(ListNode head) {
-       // Step 1: Calculate the length of the linked list
-        int length = 0;
-        ListNode current = head;
-        while (current != null) {
-            length++;
-            current = current.next;
-        }
+        int len = 0;
+       ListNode temp = head;
+       ListNode temp1 = head;
+       
+       int mid =0;
 
-        // Step 2: Find the middle index
-        int middleIndex = length / 2;
+       while(temp!=null)
+       {
+         len++;  
+         temp = temp.next;  
+       }
 
-        // Step 3: Traverse to the middle index
-        current = head;
-        for (int i = 0; i < middleIndex; i++) {
-            current = current.next;
-        }
+       System.out.println("Len is:"+len);
 
-        // Step 4: Return the middle node
-        return current;
+       mid = len/2;
+
+       System.out.println("Mid is :"+mid);
+
+       int count =0;
+
+       while(count<mid)
+       {
+         count++;
+         temp1= temp1.next;
+       }
+        return temp1;
     }
 }
 
