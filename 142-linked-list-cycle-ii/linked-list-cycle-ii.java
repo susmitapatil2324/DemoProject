@@ -11,20 +11,27 @@
  */
 public class Solution {
 
+     // Floyds cycle detection Algo
     public ListNode detectCycle(ListNode head) {
-        ListNode temp = head;
-        Set<ListNode> set = new HashSet<ListNode>();
+       // Create two pointer fast and slow
+        ListNode fast = head;
+        ListNode slow = head;
 
-        while(temp!=null && temp.next!=null)
+        while(fast!=null && fast.next!=null)
         {
-            if(set.contains(temp))
-            {
-              return temp;
-            }
-            set.add(temp);
-            temp = temp.next;
+           fast = fast.next.next;
+           slow = slow.next;
+
+           if(fast==slow)
+           {
+              while(head!=slow)
+              {
+               slow = slow.next;
+               head = head.next;
+              }
+              return slow;
+           }
         }
-       
-       return null;
+        return null;
     }
 }
