@@ -1,24 +1,28 @@
 class Solution {
 
     public int maxArea(int[] height) {
-        int left = 0;
-    int right = height.length - 1;
-    int maxArea = 0;
+        //Area = length* width
+        // length = length of bar
+        // width = distance between left and rigth
 
-    while (left < right) {
+        int left =0;
+        int right = height.length-1;
+        int maxArea =0;
 
-      int area =
-          Math.min(height[left], height[right])
-          * (right - left);
+        while(left<right)
+        {
+          int area = Math.min(height[left],height[right])* (right-left);
 
-      maxArea = Math.max(area, maxArea);
+          maxArea = Math.max(area,maxArea);
 
-      if (height[left] < height[right])
-        left++;
-      else
-        right--;
-    }
-
-    return maxArea;
+          if(height[left]<height[right])
+          {
+             left++;
+          }else
+          {
+            right--;
+          }
+        }
+          return maxArea;
     }
 }
