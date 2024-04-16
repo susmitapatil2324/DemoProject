@@ -14,28 +14,29 @@
  * }
  */
 class Solution {
-     
+
     static List<Integer> list;
 
-    private static void traversePostOrder(TreeNode node)
+    public void postOrderTraversal(TreeNode root)
     {
-        if(node==null)
-        {
-           return;
-        }
-         traversePostOrder(node.left);
-         traversePostOrder(node.right);
-         list.add(node.val);
+       if(root==null)
+       {
+         return ;
+       }
+
+       postOrderTraversal(root.left);
+       postOrderTraversal(root.right);
+       list.add(root.val);
     }
 
-    public List<Integer> postorderTraversal(TreeNode root) {    
-      list = new ArrayList<>();
+    public List<Integer> postorderTraversal(TreeNode root) {
+        list = new ArrayList<Integer>();
 
         if(root==null)
         {
             return list;
         }
-      traversePostOrder(root);
-      return list;
+        postOrderTraversal(root);
+        return list;
     }
 }
