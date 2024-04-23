@@ -18,14 +18,14 @@ class Solution {
     public int maxDepth(TreeNode root) {
        if(root==null)
        {
-        return 0;
-       }
+         return 0;
+       }    
+
+       // This can be solved by formula 1+ Math.max(left+right) 
 
        int left  = maxDepth(root.left);
-       System.out.println("Left is :"+left);
        int right = maxDepth(root.right);
-       System.out.println("Right is :"+right);
 
-       return Math.max(left,right)+1;
+        return 1+ Math.max(left,right);
     }
 }
