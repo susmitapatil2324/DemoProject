@@ -16,18 +16,26 @@
 class Solution {
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+
     List<List<Integer>> zigzag = new ArrayList<>();
+
+    Stack<Integer> reverseStack = new Stack<>();
+
     if (root == null) return zigzag;
 
     Queue<TreeNode> queue = new LinkedList<>();
+
     queue.add(root);
+
     boolean flag = false;
 
     while (!queue.isEmpty()) {
 
       int size = queue.size();
+
       List<Integer> level = new ArrayList<>();
-      Stack<Integer> reverseStack = new Stack<>();
+
+
       for (int i = 0; i < size; i++) {
         TreeNode node = queue.poll();
 
