@@ -14,24 +14,20 @@
  * }
  */
 class Solution {
-
-    Set<Integer> set = new HashSet<Integer>();
-
-    public void getNodeFromTree(TreeNode root)
-    {
-        if(root==null)
-        {
-            return;
-        }
-        getNodeFromTree(root.left);
-        set.add(root.val);
-        getNodeFromTree(root.right);
+    public int kthSmallest(TreeNode root, int k) {
+        ArrayList<TreeNode> nodes=new ArrayList<>();
+        dfs(root,nodes);
+        return(nodes.get(k-1).val); /*
+        /* K-1 because indexstart at zero suppose I want 3rd smallest that is present in 2nd 
+          place in arraylist that's why we are doing k-1*/  
     }
 
-    public int kthSmallest(TreeNode root, int k) {
-        getNodeFromTree(root);
-         List<Integer> list = new ArrayList<>(set);
-        int ans = list.get(k-1);
-       return ans;
+    public static void dfs(TreeNode root,ArrayList<TreeNode> nodes){
+        if(root==null) return;
+
+        dfs(root.left,nodes);
+        nodes.add(root);
+        dfs(root.right,nodes);
+        
     }
 }
