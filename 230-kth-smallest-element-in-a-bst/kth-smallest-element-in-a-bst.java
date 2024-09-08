@@ -14,20 +14,22 @@
  * }
  */
 class Solution {
+    List<TreeNode> list = new ArrayList<>();
+
     public int kthSmallest(TreeNode root, int k) {
-        ArrayList<TreeNode> nodes=new ArrayList<>();
-        dfs(root,nodes);
-        return(nodes.get(k-1).val); /*
-        /* K-1 because indexstart at zero suppose I want 3rd smallest that is present in 2nd 
-          place in arraylist that's why we are doing k-1*/  
+        dfsInOrder(root);
+        TreeNode ans = list.get(k-1);
+        System.out.println("Value is :"+ans.val);
+        return ans.val;
     }
 
-    public static void dfs(TreeNode root,ArrayList<TreeNode> nodes){
-        if(root==null) return;
+    public void dfsInOrder(TreeNode root){ 
+      if(root==null) return ;
+      
+      dfsInOrder(root.left); 
+      list.add(root); 
+      dfsInOrder(root.right);
 
-        dfs(root.left,nodes);
-        nodes.add(root);
-        dfs(root.right,nodes);
-        
     }
+
 }
