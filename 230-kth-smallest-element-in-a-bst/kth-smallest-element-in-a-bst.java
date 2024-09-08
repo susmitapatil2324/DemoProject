@@ -14,22 +14,27 @@
  * }
  */
 class Solution {
-    List<TreeNode> list = new ArrayList<>();
+
+    int result = 0;
+    int count =0;
 
     public int kthSmallest(TreeNode root, int k) {
-        dfsInOrder(root);
-        TreeNode ans = list.get(k-1);
-        System.out.println("Value is :"+ans.val);
-        return ans.val;
+      findKSmallest(root,k);
+      return result;
     }
 
-    public void dfsInOrder(TreeNode root){ 
-      if(root==null) return ;
-      
-      dfsInOrder(root.left); 
-      list.add(root); 
-      dfsInOrder(root.right);
+     public void findKSmallest(TreeNode root, int k){
+        if(root==null){
+         return;
+        }
+        findKSmallest(root.left,k);
+        count++;
 
-    }
+        if(count==k){
+          result = root.val;
+        }
 
+        findKSmallest(root.right,k);
+     }
+     
 }
