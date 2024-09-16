@@ -50,7 +50,6 @@ class Solution {
           } 
           depth++; 
        }
-
        return depth;
      }
 }
