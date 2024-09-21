@@ -4,9 +4,10 @@ class Solution {
         if (root == null)  return true;
 
         // Height Function will return -1, when it’s an unbalanced tree...
-		if (Height(root) == -1)  return false;
-
-		return true;
+		if (Height(root) == -1){
+          return false;
+        }  
+        return true;	
 	}
     // Create a function to return the “height” of a current subtree using recursion...
 	public int Height(TreeNode root) {
