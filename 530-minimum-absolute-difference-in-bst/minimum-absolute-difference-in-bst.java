@@ -14,28 +14,20 @@
  * }
  */
 class Solution {
-    Integer prev = null; // KEY: Use Integer wrapper for null;
-    int minDiff = Integer.MAX_VALUE;
 
+    int prev =-1;
+    int min_diff = Integer.MAX_VALUE;
     public int getMinimumDifference(TreeNode root) {
-        if (root == null) {
-            return minDiff;
+        if(root==null){
+         return min_diff;
         }
-
-        // KEY: in order traversal to compare all nodes
-        
-        // Traverse the left subtree
-        getMinimumDifference(root.left);
-
-        // Update minDiff and prev value when not at the first node
-        if (prev != null) {
-            minDiff = Math.min(minDiff, Math.abs(root.val - prev));
-        }
-        prev = root.val;
-
-        // Traverse the right subtree
-        getMinimumDifference(root.right);
-
-        return minDiff;
+      
+      getMinimumDifference(root.left);
+      if(prev>=0){
+        min_diff = Math.min(min_diff,root.val-prev);
+      }
+      prev = root.val;
+      getMinimumDifference(root.right);
+      return min_diff;
     }
 }
